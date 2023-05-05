@@ -1,6 +1,3 @@
-# pre_deployment
-
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
@@ -29,11 +26,14 @@
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_github_repo"></a> [github\_repo](#input\_github\_repo) | Github repository name | `string` | n/a | yes |
+| <a name="input_github_user"></a> [github\_user](#input\_github\_user) | Github username | `string` | n/a | yes |
+| <a name="input_s3_bucket_name"></a> [s3\_bucket\_name](#input\_s3\_bucket\_name) | S3 bucket name | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_gh_actions_role_arn"></a> [gh\_actions\_role\_arn](#output\_gh\_actions\_role\_arn) | GitHub actions role ARN |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
