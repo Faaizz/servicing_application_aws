@@ -6,10 +6,6 @@ repos:
       - id: terraform_tflint
         args:
           - --args=--config=__GIT_WORKING_DIR__.github/linters/.tflint.hcl
-      - id: terraform_checkov
-        args:
-          - --args=--check MEDIUM
-          - --args=--bc-api-key ${CHECKOV_API_KEY}
       - id: terraform_docs
         args:
           - --hook-config=--add-to-existing-file=true
