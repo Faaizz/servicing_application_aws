@@ -22,7 +22,7 @@ variable "functions" {
   }))
 }
 
-variable "source_code_path" {
+variable "lambda_layer_arn" {
   type        = string
-  description = "Source code path"
+  description = "Lambda layer ARN"
 }

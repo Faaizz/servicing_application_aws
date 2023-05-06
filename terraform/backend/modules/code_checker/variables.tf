@@ -37,3 +37,8 @@ variable "source_code_path_prefix" {
   type        = string
   description = "Source code path prefix"
 }
+
+variable "lambda_layer_arn" {
+  type        = string
+  description = "Lambda layer ARN"
+}

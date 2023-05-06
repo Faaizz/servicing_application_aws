@@ -6,6 +6,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~>1.0 |
+| <a name="requirement_archive"></a> [archive](#requirement\_archive) | 2.3.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.63.0 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | 3.2.1 |
 
@@ -13,6 +14,7 @@
 
 | Name | Version |
 |------|---------|
+| <a name="provider_archive"></a> [archive](#provider\_archive) | 2.3.0 |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 4.63.0 |
 | <a name="provider_null"></a> [null](#provider\_null) | 3.2.1 |
 
@@ -51,10 +53,12 @@
 | [aws_iam_role_policy_attachment.api_gw_to_cloudwatch](https://registry.terraform.io/providers/hashicorp/aws/4.63.0/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_user.worker_node_asus_1](https://registry.terraform.io/providers/hashicorp/aws/4.63.0/docs/resources/iam_user) | resource |
 | [aws_iam_user_group_membership.worker_node_asus_1](https://registry.terraform.io/providers/hashicorp/aws/4.63.0/docs/resources/iam_user_group_membership) | resource |
+| [aws_lambda_layer_version.base_layer](https://registry.terraform.io/providers/hashicorp/aws/4.63.0/docs/resources/lambda_layer_version) | resource |
 | [aws_s3_bucket.results](https://registry.terraform.io/providers/hashicorp/aws/4.63.0/docs/resources/s3_bucket) | resource |
 | [aws_s3_bucket_lifecycle_configuration.extracted_order](https://registry.terraform.io/providers/hashicorp/aws/4.63.0/docs/resources/s3_bucket_lifecycle_configuration) | resource |
 | [aws_sqs_queue.codes](https://registry.terraform.io/providers/hashicorp/aws/4.63.0/docs/resources/sqs_queue) | resource |
 | [null_resource.get_source_code](https://registry.terraform.io/providers/hashicorp/null/3.2.1/docs/resources/resource) | resource |
+| [archive_file.lambda_layer](https://registry.terraform.io/providers/hashicorp/archive/2.3.0/docs/data-sources/file) | data source |
 
 ## Inputs
 

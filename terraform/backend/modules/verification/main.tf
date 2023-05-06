@@ -18,7 +18,7 @@ resource "aws_api_gateway_resource" "verification" {
 module "lambdas_verification" {
   source = "../lambdas"
 
-  source_code_path = var.source_code_path_prefix
+  lambda_layer_arn = var.lambda_layer_arn
 
   functions = [
     {

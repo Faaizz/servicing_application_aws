@@ -47,6 +47,7 @@
 | <a name="input_api_execution_arn"></a> [api\_execution\_arn](#input\_api\_execution\_arn) | API Gateway execution ARN | `string` | n/a | yes |
 | <a name="input_dynamodb_table"></a> [dynamodb\_table](#input\_dynamodb\_table) | DynamoDB table name | `string` | n/a | yes |
 | <a name="input_dynamodb_table_arn"></a> [dynamodb\_table\_arn](#input\_dynamodb\_table\_arn) | DynamoDB table ARN | `string` | n/a | yes |
+| <a name="input_lambda_layer_arn"></a> [lambda\_layer\_arn](#input\_lambda\_layer\_arn) | Lambda layer ARN | `string` | n/a | yes |
 | <a name="input_parent_id"></a> [parent\_id](#input\_parent\_id) | API Gateway parent resource ID | `string` | n/a | yes |
 | <a name="input_rest_api_id"></a> [rest\_api\_id](#input\_rest\_api\_id) | API Gateway REST API ID | `string` | n/a | yes |
 | <a name="input_result_bucket_arn"></a> [result\_bucket\_arn](#input\_result\_bucket\_arn) | S3 bucket ARN for storing order extraction results | `string` | n/a | yes |

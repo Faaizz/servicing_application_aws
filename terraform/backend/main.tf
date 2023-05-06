@@ -9,7 +9,7 @@ resource "null_resource" "get_source_code" {
 
 # S3
 resource "aws_s3_bucket" "results" {
-  bucket        = "core-orders-bb"
+  bucket        = "core-order-results"
   force_destroy = true
 }
 
@@ -92,6 +92,18 @@ resource "aws_api_gateway_rest_api" "core" {
 }
 
 
+# Lambda Layer
+resource "aws_lambda_layer_version" "base_layer" {
+  filename            = local.source_zip_path
+  layer_name          = "microsoft_services"
+  compatible_runtimes = ["python3.9"]
+  source_code_hash    = can(filesha256(local.source_zip_path)) ? filesha256(local.source_zip_path) : ""
+
+  depends_on = [
+    data.archive_file.lambda_layer,
+  ]
+}
+
 module "verification" {
   source = "./modules/verification"
 
@@ -104,6 +116,8 @@ module "verification" {
   dynamodb_table_arn = module.dynamodb_codes.dynamodb_table_arn
 
   source_code_path_prefix = local.source_code_path
+
+  lambda_layer_arn = aws_lambda_layer_version.base_layer.arn
 
   depends_on = [null_resource.get_source_code]
 }
@@ -124,6 +138,8 @@ module "order_extraction" {
 
   source_code_path_prefix = local.source_code_path
 
+  lambda_layer_arn = aws_lambda_layer_version.base_layer.arn
+
   depends_on = [null_resource.get_source_code]
 }
 
@@ -141,6 +157,8 @@ module "code_checker" {
 
   source_code_path_prefix = local.source_code_path
 
+  lambda_layer_arn = aws_lambda_layer_version.base_layer.arn
+
   depends_on = [null_resource.get_source_code]
 }
 
@@ -155,6 +173,8 @@ module "node_status" {
   dynamodb_table_arn = module.dynamodb_node_status.dynamodb_table_arn
 
   source_code_path_prefix = local.source_code_path
+
+  lambda_layer_arn = aws_lambda_layer_version.base_layer.arn
 
   depends_on = [null_resource.get_source_code]
 }

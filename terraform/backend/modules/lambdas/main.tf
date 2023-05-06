@@ -1,21 +1,9 @@
-resource "aws_lambda_layer_version" "base_layer" {
-  filename            = local.source_zip_path
-  layer_name          = "microsoft_services"
-  compatible_runtimes = ["python3.9"]
-  source_code_hash    = can(filesha256(local.source_zip_path)) ? filesha256(local.source_zip_path) : ""
-
-  depends_on = [
-    data.archive_file.extractor,
-  ]
-}
-
-
 module "lambda_integration" {
   source = "../lambda_integration"
 
   for_each = { for function in var.functions : function.function_name => function }
 
-  layer_arns = [aws_lambda_layer_version.base_layer.arn]
+  layer_arns = [var.lambda_layer_arn]
 
   api_execution_arn  = each.value.api_execution_arn
   rest_api_id        = each.value.rest_api_id
@@ -29,8 +17,4 @@ module "lambda_integration" {
   env_variables    = each.value.env_variables
 
   policy_permissions = each.value.policy_permissions
-
-  depends_on = [
-    data.archive_file.extractor,
-  ]
 }

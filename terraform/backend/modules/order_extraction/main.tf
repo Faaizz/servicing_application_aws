@@ -111,7 +111,7 @@ resource "aws_api_gateway_integration_response" "result_download" {
 module "lambdas_orderextraction" {
   source = "../lambdas"
 
-  source_code_path = var.source_code_path_prefix
+  lambda_layer_arn = var.lambda_layer_arn
 
   functions = [
     {

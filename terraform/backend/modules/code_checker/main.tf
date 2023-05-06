@@ -7,7 +7,7 @@ resource "aws_api_gateway_resource" "codechecker" {
 module "lambdas_codechecker" {
   source = "../lambdas"
 
-  source_code_path = var.source_code_path_prefix
+  lambda_layer_arn = var.lambda_layer_arn
 
   functions = [
     {
