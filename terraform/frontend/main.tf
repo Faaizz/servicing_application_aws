@@ -102,6 +102,12 @@ resource "aws_amplify_app" "core_frontend" {
     status = "200"
     target = "/services/${var.core_backend_service}/verification/email/[id].html"
   }
+
+  lifecycle {
+    ignore_changes = [
+      custom_rule,
+    ]
+  }
 }
 
 resource "aws_amplify_branch" "main" {
