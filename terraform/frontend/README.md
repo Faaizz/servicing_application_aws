@@ -33,6 +33,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_backend_tf_backend"></a> [backend\_tf\_backend](#input\_backend\_tf\_backend) | Backend terraform backend configuration | `map(string)` | n/a | yes |
+| <a name="input_core_backend_service"></a> [core\_backend\_service](#input\_core\_backend\_service) | Core backend service name | `string` | n/a | yes |
 | <a name="input_github_access_token"></a> [github\_access\_token](#input\_github\_access\_token) | GitHub access token for repository access | `string` | n/a | yes |
 | <a name="input_github_repo_branch"></a> [github\_repo\_branch](#input\_github\_repo\_branch) | Github repository branch name | `string` | n/a | yes |
 | <a name="input_github_repo_url"></a> [github\_repo\_url](#input\_github\_repo\_url) | Github repository url | `string` | n/a | yes |

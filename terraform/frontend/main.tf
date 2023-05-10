@@ -92,15 +92,15 @@ resource "aws_amplify_app" "core_frontend" {
   }
   # Dynamic routes for verification code
   custom_rule {
-    source = "/services/microsoft/verification/code/<*>"
+    source = "/services/${var.core_backend_service}/verification/code/<*>"
     status = "200"
-    target = "/services/microsoft/verification/code/[id].html"
+    target = "/services/${var.core_backend_service}/verification/code/[id].html"
   }
   # Dynamic routes for verification email
   custom_rule {
-    source = "/services/microsoft/verification/email/<*>"
+    source = "/services/${var.core_backend_service}/verification/email/<*>"
     status = "200"
-    target = "/services/microsoft/verification/email/[id].html"
+    target = "/services/${var.core_backend_service}/verification/email/[id].html"
   }
 }
 

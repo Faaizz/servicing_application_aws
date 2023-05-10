@@ -65,6 +65,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_api_log_level"></a> [api\_log\_level](#input\_api\_log\_level) | API log level | `string` | `"INFO"` | no |
+| <a name="input_core_backend_service"></a> [core\_backend\_service](#input\_core\_backend\_service) | Core backend service name | `string` | n/a | yes |
 | <a name="input_github_repo_url"></a> [github\_repo\_url](#input\_github\_repo\_url) | Github repository url | `string` | n/a | yes |
 | <a name="input_source_code_suffix"></a> [source\_code\_suffix](#input\_source\_code\_suffix) | Source code path in Github repository | `string` | `"code"` | no |
 | <a name="input_stage_name"></a> [stage\_name](#input\_stage\_name) | API stage name | `string` | `"dev"` | no |

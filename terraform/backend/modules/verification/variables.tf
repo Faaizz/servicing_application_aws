@@ -37,3 +37,8 @@ variable "lambda_layer_arn" {
   type        = string
   description = "Lambda layer ARN"
 }
+
+variable "core_backend_service" {
+  description = "Core backend service name"
+  type        = string
+}

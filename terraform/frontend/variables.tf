@@ -18,3 +18,8 @@ variable "backend_tf_backend" {
   description = "Backend terraform backend configuration"
   type        = map(string)
 }
+
+variable "core_backend_service" {
+  description = "Core backend service name"
+  type        = string
+}

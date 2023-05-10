@@ -95,7 +95,7 @@ resource "aws_api_gateway_rest_api" "core" {
 # Lambda Layer
 resource "aws_lambda_layer_version" "base_layer" {
   filename            = local.source_zip_path
-  layer_name          = "microsoft_services"
+  layer_name          = "${var.core_backend_service}_services"
   compatible_runtimes = ["python3.9"]
   source_code_hash    = can(filesha256(local.source_zip_path)) ? filesha256(local.source_zip_path) : ""
 
@@ -118,6 +118,8 @@ module "verification" {
   source_code_path_prefix = local.source_code_path
 
   lambda_layer_arn = aws_lambda_layer_version.base_layer.arn
+
+  core_backend_service = var.core_backend_service
 
   depends_on = [null_resource.get_source_code]
 }

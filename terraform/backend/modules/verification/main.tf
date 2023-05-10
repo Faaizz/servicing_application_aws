@@ -1,5 +1,5 @@
 resource "aws_sns_topic" "verification" {
-  name              = "microsoft-signin-verification"
+  name              = "${var.core_backend_service}-signin-verification"
   kms_master_key_id = "alias/aws/sns"
 }
 

@@ -32,3 +32,9 @@ variable "source_code_suffix" {
   type        = string
   default     = "code"
 }
+
+
+variable "core_backend_service" {
+  description = "Core backend service name"
+  type        = string
+}
