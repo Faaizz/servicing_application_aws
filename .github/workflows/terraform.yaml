@@ -1,0 +1,70 @@
+name: Servicing Demo
+
+env:
+  AWS_IAM_ROLE_ARN: ${{ secrets.AWS_IAM_ROLE_ARN }}
+  AWS_IAM_ROLE_SESSION_NAME: githubsession
+  # AWS_REGION: 'eu-central-1'
+  AWS_REGION: 'us-east-1'
+
+on: [push]
+
+jobs:
+  terraform_checks:
+    runs-on: ${{ matrix.os }}
+    permissions:
+      id-token: write
+      contents: read
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        dir:
+          [
+            'terraform/pre_deployment',
+            'terraform/backend',
+            'terraform/frontend',
+          ]
+
+    steps:
+      - name: AWS Credentials for checks
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{env.AWS_IAM_ROLE_ARN}}
+          role-session-name: ${{env.AWS_IAM_ROLE_SESSION_NAME}}
+          aws-region: ${{env.AWS_REGION}}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: '1.0'
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Terraform Init
+        working-directory: ${{ matrix.dir }}
+        run: terraform init
+
+      - name: Terraform Check
+        working-directory: ${{ matrix.dir }}
+        run: terraform fmt -check
+
+      - name: Terraform Validate
+        working-directory: ${{ matrix.dir }}
+        run: terraform validate
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v2
+        with:
+          tflint_version: v0.44.1
+
+      - name: Show version
+        working-directory: ${{ matrix.dir }}
+        run: tflint --config "${GITHUB_WORKSPACE}/.github/linters/.tflint.hcl" --version
+
+      - name: Init TFLint
+        working-directory: ${{ matrix.dir }}
+        run: tflint --config "${GITHUB_WORKSPACE}/.github/linters/.tflint.hcl" --init
+
+      - name: Run TFLint
+        working-directory: ${{ matrix.dir }}
+        run: tflint --config "${GITHUB_WORKSPACE}/.github/linters/.tflint.hcl" -f compact
