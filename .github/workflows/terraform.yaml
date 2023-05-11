@@ -26,18 +26,18 @@ jobs:
 
     steps:
       - name: AWS Credentials for CI Account
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@580afbba8076b302fad6220e95a3a845f32b165a
         with:
           role-to-assume: ${{env.AWS_IAM_ROLE_ARN_CI}}
           role-session-name: ${{env.AWS_IAM_ROLE_SESSION_NAME}}
           aws-region: ${{env.AWS_REGION}}
-
       - name: AWS Credentials for Deployment
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@580afbba8076b302fad6220e95a3a845f32b165a
         with:
-          role-to-assume: ${{env.AWS_IAM_ROLE_ARN_DEPLOY}}
-          role-session-name: ${{env.AWS_IAM_ROLE_SESSION_NAME}}
           aws-region: ${{env.AWS_REGION}}
+          role-to-assume: ${{env.AWS_IAM_ROLE_ARN_DEPLOY}}
+          role-skip-session-tagging: true
+          role-chaining: true
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
