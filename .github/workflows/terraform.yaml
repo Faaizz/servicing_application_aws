@@ -1,10 +1,10 @@
 name: Servicing Demo
 
 env:
-  AWS_IAM_ROLE_ARN: ${{ secrets.AWS_IAM_ROLE_ARN }}
+  AWS_IAM_ROLE_ARN_CI: ${{ secrets.AWS_IAM_ROLE_ARN_CI }}
+  AWS_IAM_ROLE_ARN_DEPLOY: ${{ secrets.AWS_IAM_ROLE_ARN_DEPLOY }}
   AWS_IAM_ROLE_SESSION_NAME: githubsession
-  # AWS_REGION: 'eu-central-1'
-  AWS_REGION: 'us-east-1'
+  AWS_REGION: 'eu-central-1'
 
 on: [push]
 
@@ -25,10 +25,17 @@ jobs:
           ]
 
     steps:
-      - name: AWS Credentials for checks
+      - name: AWS Credentials for CI Account
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: ${{env.AWS_IAM_ROLE_ARN}}
+          role-to-assume: ${{env.AWS_IAM_ROLE_ARN_CI}}
+          role-session-name: ${{env.AWS_IAM_ROLE_SESSION_NAME}}
+          aws-region: ${{env.AWS_REGION}}
+
+      - name: AWS Credentials for Deployment
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{env.AWS_IAM_ROLE_ARN_DEPLOY}}
           role-session-name: ${{env.AWS_IAM_ROLE_SESSION_NAME}}
           aws-region: ${{env.AWS_REGION}}
 
