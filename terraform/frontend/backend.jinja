@@ -9,8 +9,8 @@ terraform {
   }
 
   backend "s3" {
-    region = "eu-central-1"
-    bucket = "faaizz-demo-terraform-state"
-    key    = "frontend.tfstate"
+    region = "{{ region }}"
+    bucket = "{{ s3_bucket }}"
+    key    = "{{ key }}"
   }
 }
