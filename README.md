@@ -1,5 +1,7 @@
 # Servicing Application on AWS
 
+![terraform workflow](https://github.com/faaizz/servicing_application_aws/actions/workflows/terraform.yaml/badge.svg)
+
 This repository holds skeleton code for a servicing application that is deployed on AWS.  
 
 ## CI
