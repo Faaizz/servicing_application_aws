@@ -1,4 +1,4 @@
-name: Servicing Demo
+name: Terraform Validation
 
 env:
   AWS_IAM_ROLE_ARN_CI: ${{ secrets.AWS_IAM_ROLE_ARN_CI }}
