@@ -56,8 +56,8 @@ jobs:
       - name: Generate backend.tf
         shell: bash
         run: |
-          ./scripts/generate_backend.sh ./terraform/backend ${{env.S3_BUCKET}} ${{env.AWS_REGION}} "backend.tf"
-          ./scripts/generate_backend.sh ./terraform/frontend ${{env.S3_BUCKET}} ${{env.AWS_REGION}} "frontend.tf"
+          ./scripts/generate_backend.sh ./terraform/backend ${{env.S3_BUCKET}} ${{env.AWS_REGION}} "backend.tfstate"
+          ./scripts/generate_backend.sh ./terraform/frontend ${{env.S3_BUCKET}} ${{env.AWS_REGION}} "frontend.tfstate"
 
       - name: Terraform Init
         working-directory: ${{ matrix.dir }}
