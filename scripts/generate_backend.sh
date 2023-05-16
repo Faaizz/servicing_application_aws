@@ -18,7 +18,7 @@ test -d ./.venv || python3 -m venv ./.venv
 source ./.venv/bin/activate
 pip install jinja2-cli==0.8.2 Jinja2==3.1.2
 
-for file in $(find .. -type f -name "backend.jinja")
+for file in $(find . -type f -name "backend.jinja")
 do
   jinja2 "${file}" \
     -D region="${REGION}" \
