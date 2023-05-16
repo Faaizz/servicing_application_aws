@@ -71,6 +71,7 @@ variable "env_variables" {
     value = string
   }))
   description = "Environment variables to pass to function."
+  default     = []
 }
 
 variable "api_key_required" {

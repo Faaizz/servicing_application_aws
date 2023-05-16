@@ -1,46 +1,3 @@
-# API Gateway CW Logs Access
-resource "aws_iam_role" "api_gw_to_cloudwatch" {
-  name_prefix = "api_gateway_cloudwatch_global"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid    = ""
-        Effect = "Allow"
-        Principal = {
-          Service = "apigateway.amazonaws.com"
-        },
-        Action = "sts:AssumeRole"
-      }
-    ]
-  })
-}
-resource "aws_iam_policy" "api_gw_to_cloudwatch" {
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "logs:CreateLogGroup",
-          "logs:CreateLogStream",
-          "logs:DescribeLogGroups",
-          "logs:DescribeLogStreams",
-          "logs:PutLogEvents",
-          "logs:GetLogEvents",
-          "logs:FilterLogEvents"
-        ],
-        Resource = "*"
-      }
-    ]
-  })
-}
-resource "aws_iam_role_policy_attachment" "api_gw_to_cloudwatch" {
-  role       = aws_iam_role.api_gw_to_cloudwatch.name
-  policy_arn = aws_iam_policy.api_gw_to_cloudwatch.arn
-}
-
 # Worker Node Permissions
 resource "aws_iam_group" "worker_nodes" {
   name = "worker_nodes"
@@ -59,7 +16,7 @@ resource "aws_iam_group_policy" "worker_nodes" {
           "sqs:*",
         ]
         Resource = [
-          aws_sqs_queue.codes.arn,
+          module.storage.codes_queue_arn,
         ]
       },
       {
@@ -79,8 +36,8 @@ resource "aws_iam_group_policy" "worker_nodes" {
           "dynamodb:*",
         ]
         Resource = [
-          module.dynamodb_codes.dynamodb_table_arn,
-          module.dynamodb_node_status.dynamodb_table_arn,
+          module.storage.codes_dynamodb_table_arn,
+          module.storage.nodes_dynamodb_table_arn,
         ]
       },
     ]
