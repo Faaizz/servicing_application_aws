@@ -43,7 +43,7 @@ No modules.
 | <a name="input_api_execution_arn"></a> [api\_execution\_arn](#input\_api\_execution\_arn) | Execution ARN for REST API | `string` | n/a | yes |
 | <a name="input_api_key_required"></a> [api\_key\_required](#input\_api\_key\_required) | API key requirement | `bool` | `true` | no |
 | <a name="input_api_path"></a> [api\_path](#input\_api\_path) | API path to resource | `string` | n/a | yes |
-| <a name="input_env_variables"></a> [env\_variables](#input\_env\_variables) | Environment variables to pass to function. | <pre>list(object({<br>    name  = string<br>    value = string<br>  }))</pre> | n/a | yes |
+| <a name="input_env_variables"></a> [env\_variables](#input\_env\_variables) | Environment variables to pass to function. | <pre>list(object({<br>    name  = string<br>    value = string<br>  }))</pre> | `[]` | no |
 | <a name="input_function_handler"></a> [function\_handler](#input\_function\_handler) | lambda function handler | `string` | n/a | yes |
 | <a name="input_function_name"></a> [function\_name](#input\_function\_name) | function name | `string` | n/a | yes |
 | <a name="input_http_auth"></a> [http\_auth](#input\_http\_auth) | HTTP Authentication type for API path | `string` | `"NONE"` | no |

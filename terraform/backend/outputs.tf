@@ -1,25 +1,19 @@
 output "api_url" {
-  value       = aws_api_gateway_stage.core_dev.invoke_url
+  value       = module.api_gateway_deployment.invoke_url
   description = "invoke URL for API"
 }
-
-output "trial_api_key" {
-  value       = aws_api_gateway_usage_plan_key.core_trial.value
-  description = "Trial API key"
-}
-
 output "unlimited_api_key" {
-  value       = aws_api_gateway_usage_plan_key.core_unlimited.value
+  value       = module.api_gateway_deployment.unlimited_api_key
   description = "Unlimited API key"
 }
 
 output "queue_url" {
-  value       = aws_sqs_queue.codes.url
+  value       = module.storage.codes_queue_url
   description = "URL of SQS queue for codes"
 }
 
 output "codes_dynamodb_table" {
-  value       = module.dynamodb_codes.dynamodb_table_id
+  value       = module.storage.codes_dynamodb_table_id
   description = "DynamoDB table for storing codes"
 }
 
